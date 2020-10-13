@@ -1,0 +1,107 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/Fonts/Font_Mplus_18px.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Scenes/CellLine/CellLine.gd" type="Script" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.917647, 0.898039, 0.870588, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0, 0, 0, 1 )
+border_blend = true
+
+[node name="CellLine" type="HBoxContainer"]
+margin_left = 16.0
+margin_top = 32.0
+margin_right = 524.0
+margin_bottom = 76.0
+size_flags_horizontal = 3
+custom_constants/separation = 0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+margin_right = 112.0
+margin_bottom = 44.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.4
+custom_styles/panel = SubResource( 1 )
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 111.0
+margin_bottom = 43.0
+custom_constants/margin_right = 24
+custom_constants/margin_top = 4
+custom_constants/margin_left = 24
+custom_constants/margin_bottom = 4
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer"]
+margin_left = 24.0
+margin_top = 8.0
+margin_right = 86.0
+margin_bottom = 34.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 1, 0.909804, 0.623529, 1 )
+text = "開始"
+align = 1
+
+[node name="PanelContainer2" type="PanelContainer" parent="."]
+margin_left = 112.0
+margin_right = 225.0
+margin_bottom = 44.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.4
+custom_styles/panel = SubResource( 1 )
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer2"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 112.0
+margin_bottom = 43.0
+custom_constants/margin_right = 24
+custom_constants/margin_top = 4
+custom_constants/margin_left = 24
+custom_constants/margin_bottom = 4
+
+[node name="Label" type="Label" parent="PanelContainer2/MarginContainer"]
+margin_left = 24.0
+margin_top = 8.0
+margin_right = 87.0
+margin_bottom = 34.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 1, 0.909804, 0.623529, 1 )
+text = "終了"
+align = 1
+
+[node name="PanelContainer3" type="PanelContainer" parent="."]
+margin_left = 225.0
+margin_right = 508.0
+margin_bottom = 44.0
+size_flags_horizontal = 3
+custom_styles/panel = SubResource( 1 )
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer3"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 282.0
+margin_bottom = 43.0
+custom_constants/margin_right = 8
+custom_constants/margin_top = 4
+custom_constants/margin_left = 8
+custom_constants/margin_bottom = 4
+
+[node name="Label" type="Label" parent="PanelContainer3/MarginContainer"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 273.0
+margin_bottom = 34.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 1, 0.909804, 0.623529, 1 )
+text = "シーケンス"
+align = 1

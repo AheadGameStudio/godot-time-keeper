@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform float amount = 4.0;
+
+void fragment()
+{
+	COLOR = textureLod(SCREEN_TEXTURE, SCREEN_UV, amount);
+}"
+
+[resource]
+shader = SubResource( 1 )
+shader_param/amount = 4.0

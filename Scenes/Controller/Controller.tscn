@@ -1,0 +1,377 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://ShadowPanel.tres" type="StyleBox" id=1]
+[ext_resource path="res://Scenes/Controller/Controller.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Fonts/Font_Mplus_18px.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Scenes/TimeTable/TimeTable.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Clock/Clock.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/ControlButton/ControlButton.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/CurrentSequence/CurrentSequence.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Assets/Fonts/Font_Mplus_24px.tres" type="DynamicFont" id=8]
+[ext_resource path="res://Assets/Textures/Icon_Load_Table.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Textures/Icon_Close.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Textures/Icon_Set_Date.png" type="Texture" id=11]
+[ext_resource path="res://Canvas_Blur_Shader.tres" type="Material" id=12]
+[ext_resource path="res://Theme.tres" type="Theme" id=13]
+[ext_resource path="res://Scenes/MessageWindow/MessageWindow.tscn" type="PackedScene" id=14]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.129412, 0.0196078, 0.152941, 1 )
+
+[node name="Controller" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Container" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_clip_content = true
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Header" type="PanelContainer" parent="Container"]
+margin_right = 540.0
+margin_bottom = 67.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="MarginContainer" type="MarginContainer" parent="Container/Header"]
+margin_right = 540.0
+margin_bottom = 67.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 16
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 16
+
+[node name="GridContainer" type="GridContainer" parent="Container/Header/MarginContainer"]
+margin_left = 10.0
+margin_top = 16.0
+margin_right = 530.0
+margin_bottom = 51.0
+columns = 4
+
+[node name="Load_TimeTable_Button" type="Button" parent="Container/Header/MarginContainer/GridContainer"]
+margin_right = 40.0
+margin_bottom = 35.0
+focus_mode = 0
+enabled_focus_mode = 0
+icon = ExtResource( 9 )
+flat = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Container/Header/MarginContainer/GridContainer"]
+margin_left = 44.0
+margin_right = 60.0
+margin_bottom = 35.0
+custom_constants/margin_right = 16
+
+[node name="Set_Execute_Date_Button" type="Button" parent="Container/Header/MarginContainer/GridContainer"]
+margin_left = 64.0
+margin_right = 104.0
+margin_bottom = 35.0
+focus_mode = 0
+enabled_focus_mode = 0
+icon = ExtResource( 11 )
+flat = true
+
+[node name="CloseButton" type="Button" parent="Container/Header/MarginContainer/GridContainer"]
+margin_left = 479.0
+margin_right = 520.0
+margin_bottom = 35.0
+focus_mode = 0
+size_flags_horizontal = 10
+enabled_focus_mode = 0
+icon = ExtResource( 10 )
+flat = true
+
+[node name="CurrentSequence" parent="Container" instance=ExtResource( 7 )]
+
+[node name="MessageWindow" parent="Container" instance=ExtResource( 14 )]
+margin_top = 145.0
+margin_bottom = 259.0
+
+[node name="Clock" parent="Container" instance=ExtResource( 5 )]
+
+[node name="ControlButton" parent="Container" instance=ExtResource( 6 )]
+
+[node name="TimeTable" parent="Container" instance=ExtResource( 4 )]
+margin_top = 577.0
+
+[node name="CloseConfirm" type="ColorRect" parent="."]
+material = ExtResource( 12 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PanelContainer" type="PanelContainer" parent="CloseConfirm"]
+anchor_left = 0.1
+anchor_top = 0.25
+anchor_right = 0.9
+anchor_bottom = 0.45
+custom_styles/panel = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="CloseConfirm/PanelContainer"]
+margin_right = 432.0
+margin_bottom = 234.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CloseConfirm/PanelContainer/CenterContainer"]
+margin_left = 36.0
+margin_top = 61.0
+margin_right = 396.0
+margin_bottom = 172.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="CloseConfirm/PanelContainer/CenterContainer/VBoxContainer"]
+margin_right = 360.0
+margin_bottom = 55.0
+custom_fonts/font = ExtResource( 3 )
+text = "タイムテーブル実行中の場合、中断しますが
+終了してよろしいですか？"
+align = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="CloseConfirm/PanelContainer/CenterContainer/VBoxContainer"]
+margin_top = 59.0
+margin_right = 360.0
+margin_bottom = 75.0
+custom_constants/margin_right = 4
+custom_constants/margin_top = 8
+custom_constants/margin_left = 4
+custom_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CloseConfirm/PanelContainer/CenterContainer/VBoxContainer"]
+margin_top = 79.0
+margin_right = 360.0
+margin_bottom = 111.0
+
+[node name="Close_Accept_Button" type="Button" parent="CloseConfirm/PanelContainer/CenterContainer/VBoxContainer/HBoxContainer"]
+margin_right = 168.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+theme = ExtResource( 13 )
+text = "はい"
+
+[node name="MarginContainer" type="MarginContainer" parent="CloseConfirm/PanelContainer/CenterContainer/VBoxContainer/HBoxContainer"]
+margin_left = 172.0
+margin_right = 188.0
+margin_bottom = 32.0
+custom_constants/margin_right = 8
+custom_constants/margin_left = 8
+
+[node name="Close_Cancel_Button" type="Button" parent="CloseConfirm/PanelContainer/CenterContainer/VBoxContainer/HBoxContainer"]
+margin_left = 192.0
+margin_right = 360.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+theme = ExtResource( 13 )
+text = "いいえ"
+
+[node name="ExecuteDateSetting" type="ColorRect" parent="."]
+material = ExtResource( 12 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PanelContainer" type="PanelContainer" parent="ExecuteDateSetting"]
+anchor_left = 0.1
+anchor_top = 0.25
+anchor_right = 0.9
+anchor_bottom = 0.45
+custom_styles/panel = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="ExecuteDateSetting/PanelContainer"]
+margin_right = 432.0
+margin_bottom = 234.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ExecuteDateSetting/PanelContainer/CenterContainer"]
+margin_left = 65.0
+margin_top = 46.0
+margin_right = 367.0
+margin_bottom = 188.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="ExecuteDateSetting/PanelContainer/CenterContainer/VBoxContainer"]
+margin_right = 302.0
+margin_bottom = 26.0
+custom_fonts/font = ExtResource( 3 )
+text = "実行する日程を設定してください"
+align = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="ExecuteDateSetting/PanelContainer/CenterContainer/VBoxContainer"]
+margin_top = 30.0
+margin_right = 302.0
+margin_bottom = 46.0
+custom_constants/margin_right = 4
+custom_constants/margin_top = 8
+custom_constants/margin_left = 4
+custom_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ExecuteDateSetting/PanelContainer/CenterContainer/VBoxContainer"]
+margin_top = 50.0
+margin_right = 302.0
+margin_bottom = 86.0
+
+[node name="Year" type="LineEdit" parent="ExecuteDateSetting/PanelContainer/CenterContainer/VBoxContainer/HBoxContainer"]
+margin_right = 70.0
+margin_bottom = 36.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 13 )
+align = 1
+max_length = 4
+placeholder_text = "2020"
+caret_blink = true
+
+[node name="Label" type="Label" parent="ExecuteDateSetting/PanelContainer/CenterContainer/VBoxContainer/HBoxContainer"]
+margin_left = 74.0
+margin_right = 98.0
+margin_bottom = 36.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 8 )
+text = "年"
+align = 1
+valign = 1
+
+[node name="Month" type="LineEdit" parent="ExecuteDateSetting/PanelContainer/CenterContainer/VBoxContainer/HBoxContainer"]
+margin_left = 102.0
+margin_right = 172.0
+margin_bottom = 36.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 13 )
+align = 1
+max_length = 2
+placeholder_text = "10"
+caret_blink = true
+
+[node name="Label2" type="Label" parent="ExecuteDateSetting/PanelContainer/CenterContainer/VBoxContainer/HBoxContainer"]
+margin_left = 176.0
+margin_right = 200.0
+margin_bottom = 36.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 8 )
+text = "月"
+align = 1
+valign = 1
+
+[node name="Day" type="LineEdit" parent="ExecuteDateSetting/PanelContainer/CenterContainer/VBoxContainer/HBoxContainer"]
+margin_left = 204.0
+margin_right = 274.0
+margin_bottom = 36.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 13 )
+align = 1
+max_length = 4
+placeholder_text = "16"
+caret_blink = true
+
+[node name="Label3" type="Label" parent="ExecuteDateSetting/PanelContainer/CenterContainer/VBoxContainer/HBoxContainer"]
+margin_left = 278.0
+margin_right = 302.0
+margin_bottom = 36.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 8 )
+text = "日"
+align = 1
+valign = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="ExecuteDateSetting/PanelContainer/CenterContainer/VBoxContainer"]
+margin_top = 90.0
+margin_right = 302.0
+margin_bottom = 106.0
+custom_constants/margin_right = 4
+custom_constants/margin_top = 8
+custom_constants/margin_left = 4
+custom_constants/margin_bottom = 8
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ExecuteDateSetting/PanelContainer/CenterContainer/VBoxContainer"]
+margin_top = 110.0
+margin_right = 302.0
+margin_bottom = 142.0
+
+[node name="Set_Date_Accept_Button" type="Button" parent="ExecuteDateSetting/PanelContainer/CenterContainer/VBoxContainer/HBoxContainer2"]
+margin_right = 133.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+theme = ExtResource( 13 )
+text = "設定"
+
+[node name="MarginContainer4" type="MarginContainer" parent="ExecuteDateSetting/PanelContainer/CenterContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 137.0
+margin_right = 164.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
+custom_constants/margin_right = 4
+custom_constants/margin_top = 8
+custom_constants/margin_left = 4
+custom_constants/margin_bottom = 8
+
+[node name="Set_Date_Cancel_Button" type="Button" parent="ExecuteDateSetting/PanelContainer/CenterContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 168.0
+margin_right = 302.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+theme = ExtResource( 13 )
+text = "キャンセル"
+
+[node name="LoadDialog" type="ColorRect" parent="."]
+visible = false
+material = ExtResource( 12 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FileDialog" type="FileDialog" parent="LoadDialog"]
+anchor_left = 0.05
+anchor_top = 0.2
+anchor_right = 0.95
+anchor_bottom = 0.8
+rect_min_size = Vector2( 250, 87.5 )
+theme = ExtResource( 13 )
+window_title = "ファイルを開く"
+mode = 0
+access = 2
+filters = PoolStringArray( "*.csv" )
+current_dir = "/Users/Soushi/Documents/GodotEngine/SmallProjects/TimeKeeper"
+current_path = "/Users/Soushi/Documents/GodotEngine/SmallProjects/TimeKeeper/"
+[connection signal="mouse_entered" from="Container/Header/MarginContainer/GridContainer/Load_TimeTable_Button" to="." method="_on_Load_TimeTable_Button_mouse_entered"]
+[connection signal="mouse_exited" from="Container/Header/MarginContainer/GridContainer/Load_TimeTable_Button" to="." method="_on_Button_mouse_exited"]
+[connection signal="pressed" from="Container/Header/MarginContainer/GridContainer/Load_TimeTable_Button" to="." method="_on_Load_TimeTable_Button_pressed"]
+[connection signal="mouse_entered" from="Container/Header/MarginContainer/GridContainer/Set_Execute_Date_Button" to="." method="_on_Set_Execute_Date_Button_mouse_entered"]
+[connection signal="mouse_exited" from="Container/Header/MarginContainer/GridContainer/Set_Execute_Date_Button" to="." method="_on_Button_mouse_exited"]
+[connection signal="pressed" from="Container/Header/MarginContainer/GridContainer/Set_Execute_Date_Button" to="." method="_on_Set_Execute_Date_Button_pressed"]
+[connection signal="pressed" from="Container/Header/MarginContainer/GridContainer/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="button_pressed" from="Container/ControlButton" to="." method="_on_ControlButton_button_pressed"]
+[connection signal="pressed" from="CloseConfirm/PanelContainer/CenterContainer/VBoxContainer/HBoxContainer/Close_Accept_Button" to="." method="_on_close_accept_cutton_pressed"]
+[connection signal="pressed" from="CloseConfirm/PanelContainer/CenterContainer/VBoxContainer/HBoxContainer/Close_Cancel_Button" to="." method="_on_close_cancel_button_pressed"]
+[connection signal="pressed" from="ExecuteDateSetting/PanelContainer/CenterContainer/VBoxContainer/HBoxContainer2/Set_Date_Accept_Button" to="." method="_on_Set_Date_Accept_Button_pressed"]
+[connection signal="pressed" from="ExecuteDateSetting/PanelContainer/CenterContainer/VBoxContainer/HBoxContainer2/Set_Date_Cancel_Button" to="." method="_on_Set_Date_Cancel_Button_pressed"]

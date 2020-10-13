@@ -1,0 +1,71 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/TimeTable/TimeTable.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/CellLine/CellLine.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Fonts/Font_Mplus_18px.tres" type="DynamicFont" id=3]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.141176, 0.101961, 0.235294, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0, 0, 0, 1 )
+border_blend = true
+
+[node name="TimeTable" type="MarginContainer"]
+margin_top = 609.0
+margin_right = 540.0
+margin_bottom = 1170.0
+size_flags_vertical = 3
+custom_constants/margin_right = 16
+custom_constants/margin_top = 32
+custom_constants/margin_left = 16
+custom_constants/margin_bottom = 8
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 16.0
+margin_top = 32.0
+margin_right = 524.0
+margin_bottom = 553.0
+custom_constants/separation = 0
+
+[node name="CellHeader" parent="VBoxContainer" instance=ExtResource( 2 )]
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 508.0
+margin_bottom = 36.0
+font_color = Color( 1, 0.909804, 0.623529, 1 )
+panel_theme = SubResource( 1 )
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+visible = false
+margin_top = 36.0
+margin_right = 508.0
+margin_bottom = 278.0
+size_flags_vertical = 11
+scroll_horizontal_enabled = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer"]
+margin_right = 508.0
+size_flags_horizontal = 3
+custom_constants/separation = 0
+
+[node name="EmptyBox" type="CenterContainer" parent="VBoxContainer"]
+margin_top = 36.0
+margin_right = 508.0
+margin_bottom = 521.0
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/EmptyBox"]
+margin_left = 101.0
+margin_top = 229.0
+margin_right = 407.0
+margin_bottom = 255.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 0.501961 )
+text = "タイムテーブルを読み込んでください"
