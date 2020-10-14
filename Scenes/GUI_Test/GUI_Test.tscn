@@ -1,0 +1,69 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/Fonts/Font_Mplus_24px.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Assets/Themes/Default_Theme.tres" type="Theme" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+content_margin_left = 20.0
+content_margin_right = 20.0
+content_margin_top = 20.0
+content_margin_bottom = 20.0
+bg_color = Color( 0.439216, 0.141176, 0.141176, 1 )
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+corner_detail = 20
+shadow_color = Color( 0, 0, 0, 0.235294 )
+shadow_size = 3
+shadow_offset = Vector2( 0, 2 )
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridContainer" type="GridContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="GridContainer"]
+margin_right = 198.0
+margin_bottom = 36.0
+size_flags_horizontal = 3
+text = "Button"
+
+[node name="Button2" type="Button" parent="GridContainer"]
+margin_left = 203.0
+margin_right = 369.0
+margin_bottom = 36.0
+size_flags_horizontal = 3
+toggle_mode = true
+pressed = true
+text = "Toggle Button"
+
+[node name="Button3" type="Button" parent="GridContainer"]
+margin_left = 374.0
+margin_right = 540.0
+margin_bottom = 36.0
+size_flags_horizontal = 3
+disabled = true
+text = "Disable"
+
+[node name="Button4" type="Button" parent="GridContainer"]
+margin_top = 41.0
+margin_right = 198.0
+margin_bottom = 115.0
+size_flags_horizontal = 3
+custom_styles/normal = SubResource( 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "Large Button"
