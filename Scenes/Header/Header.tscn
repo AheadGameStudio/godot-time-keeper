@@ -1,0 +1,81 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Assets/Textures/Icon_Load_Table.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Textures/Icon_Close.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Textures/Icon_Set_Date.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/Header/Header.gd" type="Script" id=4]
+[ext_resource path="res://Scenes/LoadDialog/LoadDialog.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/CloseConfirm/CloseConfirm.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/ExecuteDateSetting/ExecuteDateSetting.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Tooltip/Tooltip.tscn" type="PackedScene" id=8]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.129412, 0.0196078, 0.152941, 1 )
+
+[node name="Header" type="PanelContainer"]
+margin_right = 540.0
+margin_bottom = 67.0
+custom_styles/panel = SubResource( 1 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+_tooltip_scene = ExtResource( 8 )
+_load_dialog_scene = ExtResource( 5 )
+_close_confirm_scene = ExtResource( 6 )
+_execute_date_setting_scene = ExtResource( 7 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_right = 540.0
+margin_bottom = 67.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 16
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 16
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer"]
+margin_left = 10.0
+margin_top = 16.0
+margin_right = 530.0
+margin_bottom = 51.0
+columns = 4
+
+[node name="Load_TimeTable_Button" type="Button" parent="MarginContainer/GridContainer"]
+margin_right = 40.0
+margin_bottom = 35.0
+focus_mode = 0
+enabled_focus_mode = 0
+icon = ExtResource( 1 )
+flat = true
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/GridContainer"]
+margin_left = 44.0
+margin_right = 60.0
+margin_bottom = 35.0
+custom_constants/margin_right = 16
+
+[node name="Set_Execute_Date_Button" type="Button" parent="MarginContainer/GridContainer"]
+margin_left = 64.0
+margin_right = 104.0
+margin_bottom = 35.0
+focus_mode = 0
+enabled_focus_mode = 0
+icon = ExtResource( 3 )
+flat = true
+
+[node name="CloseButton" type="Button" parent="MarginContainer/GridContainer"]
+margin_left = 479.0
+margin_right = 520.0
+margin_bottom = 35.0
+focus_mode = 0
+size_flags_horizontal = 10
+enabled_focus_mode = 0
+icon = ExtResource( 2 )
+flat = true
+[connection signal="mouse_entered" from="MarginContainer/GridContainer/Load_TimeTable_Button" to="." method="_on_Button_mouse_entered" binds= [ 0 ]]
+[connection signal="mouse_exited" from="MarginContainer/GridContainer/Load_TimeTable_Button" to="." method="_on_Button_mouse_exited"]
+[connection signal="pressed" from="MarginContainer/GridContainer/Load_TimeTable_Button" to="." method="_on_Button_pressed" binds= [ 0 ]]
+[connection signal="mouse_entered" from="MarginContainer/GridContainer/Set_Execute_Date_Button" to="." method="_on_Button_mouse_entered" binds= [ 1 ]]
+[connection signal="mouse_exited" from="MarginContainer/GridContainer/Set_Execute_Date_Button" to="." method="_on_Button_mouse_exited"]
+[connection signal="pressed" from="MarginContainer/GridContainer/Set_Execute_Date_Button" to="." method="_on_Button_pressed" binds= [ 1 ]]
+[connection signal="pressed" from="MarginContainer/GridContainer/CloseButton" to="." method="_on_Button_pressed" binds= [ 2 ]]

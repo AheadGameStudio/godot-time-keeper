@@ -1,0 +1,87 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://ShadowPanel.tres" type="StyleBox" id=1]
+[ext_resource path="res://Canvas_Blur_Shader.tres" type="Material" id=2]
+[ext_resource path="res://Assets/Fonts/Font_Mplus_18px.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Theme.tres" type="Theme" id=4]
+[ext_resource path="res://Scenes/CloseConfirm/CloseConfirm.gd" type="Script" id=5]
+
+[node name="CloseConfirm" type="ColorRect"]
+material = ExtResource( 2 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchor_left = 0.1
+anchor_top = 0.25
+anchor_right = 0.9
+anchor_bottom = 0.45
+custom_styles/panel = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer"]
+margin_right = 432.0
+margin_bottom = 234.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/CenterContainer"]
+margin_left = 36.0
+margin_top = 61.0
+margin_right = 396.0
+margin_bottom = 172.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="PanelContainer/CenterContainer/VBoxContainer"]
+margin_right = 360.0
+margin_bottom = 55.0
+custom_fonts/font = ExtResource( 3 )
+text = "タイムテーブル実行中の場合、中断しますが
+終了してよろしいですか？"
+align = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/CenterContainer/VBoxContainer"]
+margin_top = 59.0
+margin_right = 360.0
+margin_bottom = 75.0
+custom_constants/margin_right = 4
+custom_constants/margin_top = 8
+custom_constants/margin_left = 4
+custom_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/CenterContainer/VBoxContainer"]
+margin_top = 79.0
+margin_right = 360.0
+margin_bottom = 111.0
+
+[node name="Close_Accept_Button" type="Button" parent="PanelContainer/CenterContainer/VBoxContainer/HBoxContainer"]
+margin_right = 168.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+theme = ExtResource( 4 )
+text = "はい"
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/CenterContainer/VBoxContainer/HBoxContainer"]
+margin_left = 172.0
+margin_right = 188.0
+margin_bottom = 32.0
+custom_constants/margin_right = 8
+custom_constants/margin_left = 8
+
+[node name="Close_Cancel_Button" type="Button" parent="PanelContainer/CenterContainer/VBoxContainer/HBoxContainer"]
+margin_left = 192.0
+margin_right = 360.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+theme = ExtResource( 4 )
+text = "いいえ"
+[connection signal="pressed" from="PanelContainer/CenterContainer/VBoxContainer/HBoxContainer/Close_Accept_Button" to="." method="_on_button_pressed" binds= [ 0 ]]
+[connection signal="pressed" from="PanelContainer/CenterContainer/VBoxContainer/HBoxContainer/Close_Cancel_Button" to="." method="_on_button_pressed" binds= [ 1 ]]
