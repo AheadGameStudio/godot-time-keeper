@@ -11,9 +11,6 @@ var mode = NORMAL
 
 signal button_pressed
 
-func _ready():
-	pass
-	
 func change_button_color(_color1:Color, _color2:Color, _font_color:Color):
 	button.get_material().set_shader_param("color1", _color1)
 	button.get_material().set_shader_param("color2", _color2)
@@ -43,7 +40,6 @@ func _on_Button_mouse_entered():
 func _on_Button_mouse_exited():
 	if mode != DISABLED:
 		change_button_mode(NORMAL)
-
 
 func _on_Button_pressed():
 	if mode != DISABLED:

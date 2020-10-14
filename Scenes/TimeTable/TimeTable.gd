@@ -17,6 +17,8 @@ func _ready():
 	scroll_container.set_visible(false)
 	cell_header.set_visible(false)
 
+
+
 func _on_time_table_added():
 	print("タイムテーブルコンテナがタイムテーブルの読み込みを検知しました")
 	
@@ -54,7 +56,7 @@ func get_line_value(_line, _num):
 	var _child = table_container.get_child(_line)
 	return _child.get_value(_num)
 	
-func get_current_seq_time(is_start_time:bool = true):	
+func get_current_line_time(is_start_time:bool = true):	
 	var _str:String = get_line_value(_current_line, int(!is_start_time))
 	var _arr = _str.split(":")
 	var _current_date = Global.get_execute_date()
@@ -62,7 +64,9 @@ func get_current_seq_time(is_start_time:bool = true):
 	if _current_date == null:
 		return null
 	
-	return Global.merge_dict(_current_date, {"hour": int(_arr[0]), "minute": int(_arr[1]), "second": 0} )
+	var _dic1 = Global.merge_dict(_current_date, {"hour": int(_arr[0]), "minute": int(_arr[1]), "second": 0} )
+	var _unix = OS.get_unix_time_from_datetime(_dic1)
+	return OS.get_datetime_from_unix_time(_unix)
 	
 func activate_line(_line):
 	for i in range(table_container.get_child_count()):

@@ -5,6 +5,9 @@ export var _load_dialog_scene:PackedScene
 export var _close_confirm_scene:PackedScene
 export var _execute_date_setting_scene:PackedScene
 
+onready var _load_button := $MarginContainer/GridContainer/Load_TimeTable_Button
+onready var _set_date_button := $MarginContainer/GridContainer/Set_Execute_Date_Button
+
 var _tooltip
 var _load_dialog
 var _close_confirm

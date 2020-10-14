@@ -4,6 +4,7 @@ const JAPAN_UTC_TIME:int = 9*60*60
 
 signal set_time_table
 signal set_execute_date
+signal update
 
 var _time_table:Array setget set_time_table, get_time_table
 var _execute_date:Dictionary setget set_execute_date, get_execute_date
@@ -14,6 +15,7 @@ func set_time_table(_val):
 	_time_table = _val
 	print("タイムテーブルがセットされました")
 	emit_signal("set_time_table")
+	emit_signal("update")
 
 func get_time_table():
 	return _time_table
@@ -22,6 +24,7 @@ func set_execute_date(_val):
 	_execute_date = _val
 	print("実行する日付が設定されました")
 	emit_signal("set_execute_date")
+	emit_signal("update")
 
 func get_execute_date():
 	return _execute_date
@@ -78,3 +81,11 @@ func convert_second_to_dict(_sec):
 	var _min = (_sec % 3600) / 60
 	var _s = _sec % 60
 	return {"hour": _hour, "minute": _min, "second": _s}
+
+func compare_times(_target:Dictionary):
+	# adjust second
+	var _current_time = Global.get_japan_time(OS.get_unix_time())
+	prints("current time:", _current_time, "target time:", _target)
+	prints("compare result:", OS.get_unix_time_from_datetime(_current_time) - OS.get_unix_time_from_datetime(_target))
+	var _result =  OS.get_unix_time_from_datetime(_target) - OS.get_unix_time_from_datetime(_current_time)
+	return _result

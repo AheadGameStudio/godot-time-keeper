@@ -5,9 +5,6 @@ onready var _hours_box := $VBoxContainer/CenterContainer/HBoxContainer/Hours
 onready var _seconds_box := $VBoxContainer/CenterContainer/HBoxContainer/MarginContainer/Seconds
 
 
-func _ready():
-	pass
-
 # warning-ignore:unused_argument
 func _process(delta):
 	var _time = Global.get_japan_time(OS.get_unix_time())

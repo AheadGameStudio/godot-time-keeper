@@ -39,3 +39,4 @@ margin_bottom = 259.0
 
 [node name="TimeTable" parent="Container" instance=ExtResource( 4 )]
 margin_top = 577.0
+[connection signal="button_pressed" from="Container/ControlButton" to="." method="_on_ControlButton_button_pressed"]
