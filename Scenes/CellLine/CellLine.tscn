@@ -4,7 +4,7 @@
 [ext_resource path="res://Scenes/CellLine/CellLine.gd" type="Script" id=2]
 
 [sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.917647, 0.898039, 0.870588, 1 )
+bg_color = Color( 0.721569, 0.721569, 0.721569, 1 )
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1

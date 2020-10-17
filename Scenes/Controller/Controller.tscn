@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=2]
 
+[ext_resource path="res://Scenes/ColorButton/ColorButton.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Controller/Controller.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/TimeTable/TimeTable.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Clock/Clock.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/ControlButton/ControlButton.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/CurrentSequence/CurrentSequence.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Header/Header.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/MessageWindow/MessageWindow.tscn" type="PackedScene" id=14]
@@ -12,6 +12,14 @@
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0901961, 0.0941176, 0.101961, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -28,15 +36,21 @@ __meta__ = {
 [node name="Header" parent="Container" instance=ExtResource( 9 )]
 
 [node name="CurrentSequence" parent="Container" instance=ExtResource( 7 )]
+visible = false
 
 [node name="MessageWindow" parent="Container" instance=ExtResource( 14 )]
-margin_top = 145.0
-margin_bottom = 259.0
 
 [node name="Clock" parent="Container" instance=ExtResource( 5 )]
+margin_top = 181.0
+margin_bottom = 401.0
 
-[node name="ControlButton" parent="Container" instance=ExtResource( 6 )]
+[node name="Control" parent="Container" instance=ExtResource( 1 )]
+margin_left = 170.0
+margin_top = 401.0
+margin_right = 370.0
+margin_bottom = 601.0
 
 [node name="TimeTable" parent="Container" instance=ExtResource( 4 )]
-margin_top = 577.0
-[connection signal="button_pressed" from="Container/ControlButton" to="." method="_on_ControlButton_button_pressed"]
+margin_top = 601.0
+custom_constants/margin_top = 48
+[connection signal="button_pressed" from="Container/Control" to="." method="_on_ControlButton_button_pressed"]

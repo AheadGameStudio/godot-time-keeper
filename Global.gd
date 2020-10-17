@@ -82,10 +82,25 @@ func convert_second_to_dict(_sec):
 	var _s = _sec % 60
 	return {"hour": _hour, "minute": _min, "second": _s}
 
+
+func convert_second_to_time_string(_sec):
+	var _d = convert_second_to_dict(_sec)
+	var _h = _d["hour"]
+	var _m = _d["minute"]
+	var _s = _d["second"]
+	var _str:String = ""
+	if _h > 0:
+		_str = _str + "%s時間" % [_h]
+	if _m > 0:
+		_str = _str + "%s分" % [_m]
+	_str = _str + "%s秒" % [_s] 
+	return _str
+	
+	
 func compare_times(_target:Dictionary):
 	# adjust second
 	var _current_time = Global.get_japan_time(OS.get_unix_time())
-	prints("current time:", _current_time, "target time:", _target)
-	prints("compare result:", OS.get_unix_time_from_datetime(_current_time) - OS.get_unix_time_from_datetime(_target))
+#	prints("current time:", _current_time, "target time:", _target)
+#	prints("compare result:", OS.get_unix_time_from_datetime(_current_time) - OS.get_unix_time_from_datetime(_target))
 	var _result =  OS.get_unix_time_from_datetime(_target) - OS.get_unix_time_from_datetime(_current_time)
 	return _result

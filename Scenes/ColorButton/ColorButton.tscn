@@ -1,0 +1,154 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Assets/Textures/color_gradient.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Fonts/Font_Mplus_24px.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Scenes/ColorButton/ColorButton.gd" type="Script" id=3]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+const float PI = 3.14159265359;
+uniform sampler2D color_gradient;
+uniform sampler2D mask_gradient;
+uniform float amount : hint_range(0, 1);
+uniform int border_width : hint_range(1, 50);
+uniform bool disabled;
+
+vec2 polar(vec2 _uv)
+{
+	vec2 relativePos = _uv - 0.5;
+	
+	vec2 polar;
+	polar.y = sqrt(relativePos.x * relativePos.x + relativePos.y * relativePos.y);
+	polar.y /= _uv.x / 2.0;
+	polar.y = 1.0 - polar.y;
+
+	polar.x = atan(-relativePos.y, -relativePos.x);
+	polar.x -= 1.57079632679;
+	if(polar.x < 0.0){
+		polar.x += 6.28318530718;
+	}
+	polar.x /= 6.28318530718;
+	polar.x = 1.0 - polar.x;
+	
+	return polar;
+}
+
+mat2 rotate2d(float _angle){
+	return mat2(vec2(cos(_angle),-sin(_angle)),
+				vec2(sin(_angle),cos(_angle)));
+}
+
+
+void fragment()
+{
+	vec2 relativePos = UV - 0.5;
+	float a = ceil(0.5 - length(relativePos));
+	a -= ceil((0.5 - float(border_width) * 0.01) - length(relativePos));
+	
+	float time = TIME * 0.3;
+	if(disabled)
+	{
+		time=0.0;
+	}
+	
+	vec2 mask_p = polar(UV);
+	vec2 color_p = polar( UV ) + time;
+
+	float mask = texture(mask_gradient, mask_p).r;
+	mask += (amount-.5);
+	mask = round(mask);
+	float mask2 = a - (a * mask);
+	mask *= a;
+	
+	vec3 col = texture(color_gradient, color_p).rgb;
+	if(disabled)
+	{
+		float contrast = 0.3;
+		vec3 gray = vec3( dot(col.rgb, vec3(0.299, 0.587, 0.114)) ) * contrast;
+		col = mix(col, gray, 0.9);
+	}
+	COLOR = vec4(vec3(0.2) * mask, mask2);
+	COLOR += vec4(col * mask2, mask);
+}"
+
+[sub_resource type="Gradient" id=2]
+colors = PoolColorArray( 1, 1, 1, 1, 0.01, 0.01, 0.01, 1 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+width = 512
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 1 )
+shader_param/amount = 0.0
+shader_param/border_width = 2
+shader_param/disabled = false
+shader_param/color_gradient = ExtResource( 1 )
+shader_param/mask_gradient = SubResource( 3 )
+
+[sub_resource type="Animation" id=6]
+resource_name = "hover"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.2, 1.2 ) ]
+}
+
+[node name="ColorButton" type="CenterContainer"]
+margin_right = 100.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 200, 200 )
+rect_pivot_offset = Vector2( 100, 100 )
+size_flags_horizontal = 6
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 190.0
+margin_bottom = 190.0
+rect_min_size = Vector2( 180, 180 )
+custom_fonts/font = ExtResource( 2 )
+text = "Sleeping..."
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource( 4 )
+margin_right = 200.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 200, 200 )
+rect_pivot_offset = Vector2( 100, 100 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+margin_right = 200.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 200, 200 )
+rect_clip_content = true
+focus_mode = 0
+enabled_focus_mode = 0
+flat = true
+clip_text = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/hover = SubResource( 6 )
+[connection signal="mouse_entered" from="Button" to="." method="_on_Button_mouse_entered"]
+[connection signal="mouse_exited" from="Button" to="." method="_on_Button_mouse_exited"]
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
