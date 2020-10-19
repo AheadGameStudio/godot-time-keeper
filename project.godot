@@ -17,7 +17,9 @@ _global_script_class_icons={
 
 config/name="TimeKeeper"
 run/main_scene="res://Main.tscn"
-config/icon="res://icon.png"
+boot_splash/image="res://Assets/Textures/alpha_tex.png"
+boot_splash/bg_color=Color( 0.0901961, 0.0941176, 0.101961, 1 )
+config/icon="res://Assets/Textures/icon_app.png"
 
 [autoload]
 
