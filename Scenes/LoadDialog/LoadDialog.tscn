@@ -28,5 +28,5 @@ window_title = "ファイルを開く"
 mode = 0
 access = 2
 filters = PoolStringArray( "*.csv" )
-current_dir = "/Users/Soushi/Documents/GodotEngine/SmallProjects/TimeKeeper"
-current_path = "/Users/Soushi/Documents/GodotEngine/SmallProjects/TimeKeeper/"
+current_dir = ""
+current_path = ""
