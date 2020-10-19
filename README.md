@@ -7,7 +7,7 @@ CSVを読み込んでタイムテーブルを実行します。
 
 ## インストール方法
 
-[[Release]]ページから対応したOSのZipファイルをダウンロードしてください。  
+[Releases](https://github.com/AheadGameStudio/godot-time-keeper/releases)ページから対応したOSのZipファイルをダウンロードしてください。  
 Zipファイルを解凍し実行ファイルを起動してください。
 
 ## 使用方法
@@ -64,4 +64,4 @@ CSVファイルで日付を定義するのは複雑になる上、同じタイ�
 - 細かな挙動のバグ
   - 最初のシーケンスで時間が大きく過ぎていてもゲージがすべて点灯している状態になる
 
-他にバグがあれば[[Issues]]まで報告をお願いします。
+他にバグがあれば[Issues](https://github.com/AheadGameStudio/godot-time-keeper/issues)まで報告をお願いします。
