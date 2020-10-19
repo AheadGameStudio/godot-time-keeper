@@ -1,10 +1,12 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://ShadowPanel.tres" type="StyleBox" id=1]
-[ext_resource path="res://Canvas_Blur_Shader.tres" type="Material" id=2]
+[ext_resource path="res://Assets/Themes/ShadowPanel.tres" type="StyleBox" id=1]
+[ext_resource path="res://Assets/Shaders/Canvas_Blur_Shader.tres" type="Material" id=2]
 [ext_resource path="res://Assets/Fonts/Font_Mplus_18px.tres" type="DynamicFont" id=3]
-[ext_resource path="res://Theme.tres" type="Theme" id=4]
+[ext_resource path="res://Assets/Themes/Theme.tres" type="Theme" id=4]
 [ext_resource path="res://Scenes/CloseConfirm/CloseConfirm.gd" type="Script" id=5]
+
+
 
 [node name="CloseConfirm" type="ColorRect"]
 material = ExtResource( 2 )

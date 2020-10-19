@@ -1,11 +1,13 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://ShadowPanel.tres" type="StyleBox" id=1]
+[ext_resource path="res://Assets/Themes/ShadowPanel.tres" type="StyleBox" id=1]
 [ext_resource path="res://Assets/Fonts/Font_Mplus_24px.tres" type="DynamicFont" id=2]
-[ext_resource path="res://Canvas_Blur_Shader.tres" type="Material" id=3]
+[ext_resource path="res://Assets/Shaders/Canvas_Blur_Shader.tres" type="Material" id=3]
 [ext_resource path="res://Assets/Fonts/Font_Mplus_18px.tres" type="DynamicFont" id=4]
-[ext_resource path="res://Theme.tres" type="Theme" id=5]
+[ext_resource path="res://Assets/Themes/Theme.tres" type="Theme" id=5]
 [ext_resource path="res://Scenes/ExecuteDateSetting/ExecuteDateSetting.gd" type="Script" id=6]
+
+
 
 [node name="ExecuteDateSetting" type="ColorRect"]
 material = ExtResource( 3 )
